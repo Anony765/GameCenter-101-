@@ -1,1 +1,1 @@
-more games soon and better looks coming soon, some of the games will be gone if there blocked.
+more games soon and better looks coming soon, some of the games will be gone if there blocked., if you cant get in the website copy the code from gamecenter, place it in notepad on pc and save as GameCenter.html and click on the file to go to the website.
