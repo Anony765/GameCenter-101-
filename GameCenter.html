@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameCenter.io</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1E1E1E;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .welcome-screen {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .welcome-screen h2 {
+            margin-bottom: 30px;
+        }
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .game {
+            width: calc(20% - 20px);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .game iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 8px;
+        }
+        .full-screen-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-bar {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #4CAF50;
+            background-color: #1E1E1E;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .search-results {
+            margin-top: 10px;
+            color: #4CAF50;
+            font-size: 14px;
+        }
+        .recommendation {
+            color: #4CAF50;
+            cursor: pointer;
+        }
+        .recommendation:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .offline-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #FFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GameCenter.io</h1>
+    </header>
+    <div class="welcome-screen" id="welcomeScreen">
+        <h2>Welcome to the Game Center</h2>
+        <button class="button" onclick="showGames()">Continue</button>
+    </div>
+    <div class="content" id="gamesSection" style="display: none;">
+        <div class="game">
+            <h2>2048</h2>
+            <iframe src="https://play2048.co/" title="2048"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loading2048" style="display: none;">Loading...</div>
+            <p>2048</p>
+        </div>
+        <div class="game">
+            <h2>Tic Tac Toe</h2>
+            <iframe src="https://playtictactoe.org/" title="Tic Tac Toe"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingTicTacToe" style="display: none;">Loading...</div>
+            <p>Tic Tac Toe</p>
+        </div>
+        <div class="game">
+            <h2>Snake</h2>
+            <iframe src="https://playsnake.org/" title="Snake"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingSnake" style="display: none;">Loading...</div>
+            <p>Snake</p>
+        </div>
+        <div class="game">
+            <h2>Pac-Man</h2>
+            <iframe src="https://www.freeonlinegames.com/game/pac-man" title="Pac-Man"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</
+
+Screen</button>
+            <div class="loading" id="loadingPacMan" style="display: none;">Loading...</div>
+            <p>Pac-Man</p>
+        </div>
+        <div class="game">
+            <h2>Flappy Bird</h2>
+            <iframe src="https://www.silvergames.com/en/flappy-bird" title="Flappy Bird"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingFlappyBird" style="display: none;">Loading...</div>
+            <p>Flappy Bird</p>
+        </div>
+        <div class="game">
+            <h2>Space Invaders</h2>
+            <iframe src="https://www.freeonlinegames.com/game/space-invaders" title="Space Invaders"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingSpaceInvaders" style="display: none;">Loading...</div>
+            <p>Space Invaders</p>
+        </div>
+        <div class="game">
+            <h2>Bubble Shooter</h2>
+            <iframe src="https://www.freeonlinegames.com/game/bubble-shooter" title="Bubble Shooter"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingBubbleShooter" style="display: none;">Loading...</div>
+            <p>Bubble Shooter</p>
+        </div>
+        <div class="game">
+            <h2>Sudoku</h2>
+            <iframe src="https://www.sudokuweb.org/" title="Sudoku"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingSudoku" style="display: none;">Loading...</div>
+            <p>Sudoku</p>
+        </div>
+        <div class="game">
+            <h2>Chess</h2>
+            <iframe src="https://www.chess.com/play/computer" title="Chess"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingChess" style="display: none;">Loading...</div>
+            <p>Chess</p>
+        </div>
+        <div class="game">
+            <h2>Checkers</h2>
+            <iframe src="https://www.coolmathgames.com/0-checkers" title="Checkers"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingCheckers" style="display: none;">Loading...</div>
+            <p>Checkers</p>
+        </div>
+        <div class="game">
+            <h2>Minesweeper</h2>
+            <iframe src="https://www.minesweeperonline.com/" title="Minesweeper"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingMinesweeper" style="display: none;">Loading...</div>
+            <p>Minesweeper</p>
+        </div>
+        <div class="game">
+            <h2>Memory</h2>
+            <iframe src="https://www.memory-improvement-tips.com/play/mediummemorygame.html" title="Memory"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingMemory" style="display: none;">Loading...</div>
+            <p>Memory</p>
+        </div>
+        <div class="game">
+            <h2>Roblox</h2>
+            <iframe src="https://now.gg/apps/roblox-corporation/5349/roblox.html" title="Roblox"></iframe>
+            <button class="full-screen-btn" onclick="toggleFullScreen(this)">Full Screen</button>
+            <div class="loading" id="loadingRoblox" style="display: none;">Loading...</div>
+            <p>Roblox</p>
+        </div>
+        <!-- Add more games here -->
+    </div>
+
+    <script>
+        function showGames() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('gamesSection').style.display = 'flex';
+        }
+
+        function toggleFullScreen(button) {
+            var gameFrame = button.previousElementSibling;
+            if (!document.fullscreenElement) {
+                gameFrame.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
+
